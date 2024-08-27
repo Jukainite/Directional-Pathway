@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.upanh.tv/2024/06/27/Untitled-1.png">
+
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Directional Pathway</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-image: url('https://i.ibb.co/vYf18Z3/RguFUMp.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        * {
+            background-color: transparent !important; /* Makes background of all elements transparent */
+            border: none !important; /* Removes borders that might obscure the background */
+        }
+
+        a, .nav-link, .btn, .form-control {
+            color: white !important; /* Ensures text is visible on the darker background */
+            border-color: white; /* Optional: Adds white border to input and button elements for better visibility */
+        }
+
+        .btn {
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background */
+    color: white; /* White text for good contrast */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* White border for some visibility */
+    padding: 8px 15px; /* Comfortable padding */
+    border-radius: 5px; /* Rounded corners for modern appearance */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+* {
+            font-family: 'Paytone One', sans-serif;
+        }
+.btn:hover, .btn:focus {
+    background-color: rgba(255, 255, 255, 0.2) !important; /* Slightly lighter on hover/focus */
+    color: #D7E8FA; /* Light blue text on hover/focus for differentiation */
+    transform: translateY(-2px); /* Slight lift to simulate a button press */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Shadow for depth */
+}
+
+.btn:active {
+    transform: translateY(1px); /* Simulate button press */
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1); /* Smaller shadow for pressed effect */
+}
+
+/* Input Field Styles */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light white border */
+    color: white; /* White text for readability */
+    padding: 10px; /* Adequate padding */
+    border-radius: 5px; /* Rounded edges */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition for interactions */
+}
+
+.form-control:focus {
+    border-color: #AED6F1; /* Focus with a light blue border */
+    background-color: rgba(255, 255, 255, 0.25); /* Lighter background on focus */
+    box-shadow: 0 0 8px rgba(0,0,0,0.2); /* Stronger shadow for emphasis */
+}
+
+/* Adjust Navbar and Modal Colors for Consistency */
+.navbar, .modal-content, .alert, .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker background for legibility */
+}
+.dark-background {
+            background-color: rgba(17, 17, 17, 0.5) !important;
+            color: #ffffff; /* Chữ màu trắng */
+            padding: 0px; /* Để dễ nhìn */
+        border-radius: 0.7rem
+}
+.jumbotron, .content-section {
+    background-color: rgba(17, 17, 17, 0.5) !important;
+    color: #ffffff; /* Chữ màu trắng */
+    padding: 1rem; /* Để dễ nhìn */
+    border-radius: 1rem;
+    margin: 1rem;
+}
+table{
+    background-color: rgba(17, 17, 17, 0.5) !important;
+    color: #ffffff; /* Chữ màu trắng */
+    padding: 2px; /* Để dễ nhìn */
+    border-radius: 0.5rem
+}
+th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd !important;
+    }
+th:first-child, td:first-child {
+            border-left: none !important; /* Remove left border for first column */
+        }
+
+    th:last-child, td:last-child {
+            border-right: none !important; /* Remove right border for last column */
+        }
+
+    tr:first-child th {
+            border-top: none !important; /* Remove top border for header row */
+        }
+
+    tr:last-child td {
+            border-bottom: none !important; /* Remove bottom border for last row */
+        }
+    input, select, textarea{
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        border-radius: 5px;
+        color: white !important;
+    }
+    .transparent-bg{
+        background-color: transparent !important;
+    }
+    .result{
+        color: rgb(247, 213, 26) !important;
+    }
+    option{
+        color: black !important;
+    }
+    .active {
+        font-weight: bold;
+        background-color: rgb(255,255,255,0.17) !important;
+        border-radius: .3rem;
+    }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-item.nav-link');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container p-3 my-3">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a href="/" class="navbar-brand" id="home">Trang Chủ</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+                        </span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ml-auto">
+                            {% if user.is_authenticated %}
+                                {% if user.username != 'Guest' %}
+                                    {% if user.is_superuser %}
+                                        <a href="{% url 'voucherall' %}" class="nav-item nav-link" id="voucherall">Tất cả voucher</a>
+                                        <a href="{% url 'allhoadon' %}" class="nav-item nav-link" id="allhoadon">Tất cả hóa đơn</a>
+                                        <a href="{% url 'approvehoadon' %}" class="nav-item nav-link" id="approvehoadon">Hóa đơn chưa duyệt</a>
+                                        <a href="{% url 'admin_voucher' %}" class="nav-item nav-link" id="admin_voucher">Voucher cần rút tiền</a>
+                                        <a href="https://directional-pathway-dashboard.streamlit.app/" target="_blank" class="nav-item nav-link" id="dashboard">Dashboard</a>
+                                    {% else %}
+                                        <a href="{% url 'rating' %}" class="nav-item nav-link" id="rating">Đánh giá</a>
+                                        <a href="{% url 'lichsumua' %}" class="nav-item nav-link" id="lichsumua">Lịch sử giao dịch</a>
+                                        <a href="{% url 'nangcap' %}" class="nav-item nav-link" id="nangcap">Nâng cấp tài khoản</a>
+                                        <a href="{% url 'user_voucher' %}" class="nav-item nav-link" id="user_voucher">Phiếu giảm giá</a>
+                                    {% endif %}
+                                    <a href="{% url 'users-profile' %}" class="nav-item nav-link" id="users-profile">Thông tin người dùng</a>
+                                {% endif %}
+                                <form action="{% url 'logout' %}" method="post" class="form-inline">
+                                    {% csrf_token %}
+                                    <button class="nav-item nav-link btn btn-link" type="submit">Thoát</button>
+                                </form>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="nav-item nav-link" id="login">Đăng nhập</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Messages pop up -->
+                {% if messages %}
+                    <div class="alert alert-dismissible" role="alert">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

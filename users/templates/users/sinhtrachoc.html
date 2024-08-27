@@ -1,0 +1,42 @@
+{% extends "users/base.html" %}
+
+{% block title %} Sinh Trắc Học {% endblock %}
+
+{% block content %}
+<style>
+    .btn-primary {
+        background-color: #007bff; /* Màu nền xanh dương */
+        border-color: #007bff; /* Màu viền xanh dương */
+        color: white; /* Màu chữ trắng */
+        font-size: 1.2em; /* Kích thước chữ */
+        padding: 10px 20px; /* Kích thước nút */
+        border-radius: 5px; /* Bo tròn góc */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Màu nền khi di chuột */
+        border-color: #0056b3; /* Màu viền khi di chuột */
+    }
+</style>
+<br>
+
+<h1>Sinh trắc học cho {{ username }}</h1>
+<br>
+
+<h1>Số lượt vip còn lại: {{ data }}</h1>
+
+<br>
+<br>
+{% if error %}
+    <p style="color:red">{{ error }}</p>
+{% endif %}
+
+<h5>Mời bạn upload ảnh vân tay!</h5>
+<form method="post" enctype="multipart/form-data">  
+    {% csrf_token %}  
+    {{ form.as_p }}  
+    <button type="submit" class="btn btn-primary">Bắt đầu</button>  
+</form>  
+
+
+{% endblock %}

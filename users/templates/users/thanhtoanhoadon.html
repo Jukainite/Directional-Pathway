@@ -1,0 +1,82 @@
+{% extends "users/base.html" %}
+{% block title %} Nâng cấp tài khoản {% endblock title %}
+{% block content %}
+<style>
+    .payment-form {
+        float: left;
+        width: 50%;
+    }
+
+    .payment-button {
+        display: block;
+        background-color: #0000FF; /* Màu nền đen */
+        color: #fff; /* Màu chữ trắng */
+        border: none;
+        padding: 15px 30px; /* Kích thước lớn hơn */
+        margin-top: 20px; /* Khoảng cách từ nút đến các phần tử trên */
+        font-size: 30px; /* Phông chữ lớn hơn */
+        font-weight: bold; /* Chữ in đậm */
+        cursor: pointer;
+        text-decoration: none; /* Bỏ gạch chân cho link */
+        text-align: center; /* Căn giữa nội dung */
+        z-index: 10;
+    }
+    .referral-input {
+        margin-top: 20px;
+        font-size: 18px; /* Increased font size */
+        padding: 15px; /* Increased padding */
+        
+    }
+    
+    .referral-label {
+        font-size: 18px; /* Increased font size */
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>
+<h1>{{error}}</h1>
+<br>
+<br>
+<div class="container">
+    <div style="float: left; width: 50%;">
+        <h3>Mã hoá đơn: {{ bill_id }}</h3>
+        <h3>Người dùng: {{ username }}</h3>
+        <br>
+        <h3>Thông tin hoá đơn:</h3>
+        <p>Gói thần số học VIP: {{ thansohoc }} lần</p>
+        <br>
+        <p>Gói nhân tướng học VIP: {{ nhantuonghoc }} lần</p>
+        <br>
+        <p>Gói sinh trắc học VIP: {{ sinhtrachoc }} lần</p>
+        <br>
+        <h3>Giá tiền ban đầu: {{ total }} VNĐ</h3>
+        <br>
+        <h3>Số tiền đã được giảm: {{ total_discount }} VNĐ</h3>
+        <br>
+        <h3>Tổng tiền: {{ cost }} VNĐ</h3>
+    </div>
+    <form action="{% url 'xacnhanhoadon' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="bill_id" value="{{ bill_id }}">
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="thansohoc" value="{{ thansohoc }}">
+        <input type="hidden" name="nhantuonghoc" value="{{ nhantuonghoc }}">
+        <input type="hidden" name="sinhtrachoc" value="{{ sinhtrachoc }}">
+        <input type="hidden" name="total" value="{{cost }}">
+        <input type="hidden" name="img_str" value="{{ img_str }}">
+        <input type="hidden" name="approved" value="{{ approved }}">
+        <input type="hidden" name="voucher_ids" value="{{ voucher_ids }}">
+        <button type="submit"class="payment-button">NHẤP VÀO ĐÂY ĐỂ THANH TOÁN</button>
+        {% if cont %}
+            <label for="referral_code" class="referral-label">Mã giới thiệu:</label>
+            <input type="text" id="referral_code" name="referral_code" class="referral-input" placeholder="Email của người giới thiệu">
+        {% endif %}
+
+    </form>
+    <br>
+    <br>
+    <h5>Người dùng có 1 mã giới thiệu chính là email của người đó. Họ được chia hoa hồng 10% dựa trên giao dịch đầu tiên của người dùng mới được giới thiệu thông qua mã giới thiệu của hoá đơn đầu tiên (Áp dụng với hoá đơn từ 150,000₫, với một mã giới thiệu duy nhất)</h5>
+
+    
+</div>
+{% endblock content %}

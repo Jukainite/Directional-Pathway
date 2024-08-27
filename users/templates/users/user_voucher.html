@@ -1,0 +1,75 @@
+{% extends "users/base.html" %}
+{% block title %} Nâng cấp tài khoản {% endblock title %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+    th[colspan="3"] {
+        text-align: center;
+    }
+    .approved {
+        color: green;
+    }
+    .not-approved {
+        color: red;
+    }
+    .content-container {
+        text-align: center; /* Căn giữa nội dung */
+        margin-bottom: 20px; /* Khoảng cách dưới container của nội dung */
+        font-weight: bold;
+    }
+</style>
+<div class="content-container">
+    <h1>{{error}}</h1>
+    <h4>{{notice}}</h4>
+</div>
+<h1>Danh sách các voucher của bạn</h1>
+<br>
+<br>
+<form method="GET">
+<table>
+    <thead>
+        <tr>
+            <th rowspan="2">Mã voucher</th>
+            <th rowspan="2">Tên đăng nhập</th>
+            <th rowspan="2">Giá trị voucher</th>
+            <th rowspan="3">Xử lí</th>
+        </tr>
+     
+    </thead>
+    <tbody>
+        <tr>
+        <td>    </td>
+            <td>    </td>
+            
+            <td>  </td>
+            <td>   </td>
+        </tr>
+        {% for voucher in vouchers %}
+        <tr>
+            <td>{{ voucher.voucher_id }}</td>
+            <td>{{ voucher.username }}</td>
+            <td>{{ voucher.total }} VNĐ</td>
+            <td><a href="{% url 'xacnhan' voucher.voucher_id %}">Rút tiền</a></td>
+            {% comment %} <form action="{% url 'xacnhan' %}" method="post">
+                {% csrf_token %} 
+                
+                <input type="hidden" name="voucher_id" value="{{ voucher.voucher_id }}">
+                <input type="hidden" name="total" value="{{ voucher.total }}">
+                <button  type="submit" class="btn btn-primary">Rút tiền</button></form></td>
+        </tr> {% endcomment %}
+        {% endfor %}
+    </table>
+</form>
+
+
+{% endblock content %}

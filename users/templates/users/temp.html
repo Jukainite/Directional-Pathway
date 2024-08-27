@@ -1,0 +1,51 @@
+{% extends "users/base.html" %}
+{% block title %} Nâng cấp tài khoản {% endblock title %}
+{% block content %}
+  <div class="container">
+      <h1>Nâng cấp tài khoản</h1>
+      <h6>{{error}}</h6>
+      <br>
+      <form method="GET">
+          {% csrf_token %}
+          <table class="table">
+            <thead>
+                <tr>
+                    <th rowspan="2">Dịch vụ</th>
+                    <th colspan="4" style="text-align: center;">Số lượt sử dụng VIP</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center;">0 lần</th>
+                    <th style="text-align: center;">1 lần</th>
+                    <th style="text-align: center;">5 lần</th>
+                    <th style="text-align: center;">10 lần</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Thần số học</td>
+                    <td style="text-align: center;">{{ form.thansohoc.0 }}</td>
+                    <td style="text-align: center;">{{ form.thansohoc.1 }}</td>
+                    <td style="text-align: center;">{{ form.thansohoc.2 }}</td>
+                    <td style="text-align: center;">{{ form.thansohoc.3 }}</td>
+                </tr>
+                <tr>
+                    <td>Sinh trắc học</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.0 }}</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.1 }}</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.2 }}</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.3 }}</td>
+                </tr>
+                <tr>
+                    <td>Nhân tướng học</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.0 }}</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.1 }}</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.2 }}</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.3 }}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+          <button type="submit" href="{% url 'thanhtoanhoadon' %}" class="btn btn-primary">Bắt đầu thanh toán</button>
+      </form>
+  </div>
+{% endblock content %}

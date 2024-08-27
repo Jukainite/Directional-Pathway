@@ -1,0 +1,31 @@
+{% extends "users/base.html" %}
+{% block title %} Hoá đơn {% endblock title%}
+
+{% block content %}
+<h1>Hoá đơn đã lưu</h1>
+<br>
+<br>
+<div class="container">
+    <div style="float: left; width: 50%;">
+        <h3>Mã hoá đơn: {{ bill_id }}</h3>
+        <h3>Người dùng: {{ username }}</h3>
+        <h3>Thông tin hoá đơn:</h3>
+        <p>Gói thần số học VIP: {{ thansohoc }} lần</p>
+        <p>Gói nhân tướng học VIP: {{ nhantuonghoc }} lần</p>
+        <p>Gói sinh trắc học VIP: {{ sinhtrachoc }} lần</p>
+        <h3>Tổng tiền: {{ total }} VNĐ</h3>
+    </div>
+    <div style="float: right; width: 50%; text-align: center;">
+        <h3>Mời bạn quét mã QR để thanh toán:</h3>
+        <img src="data:image/png;base64,{{img_str}}" alt="QR Code" style="max-height:300px">
+        <br>
+        <h3>Hoặc chuyển tiền đến</h3>
+        <h5>Số tài khoản: </h5>
+        <p>1016266506</p>
+        <h5>Ngân hàng: </h5>
+        <p>Vietcombank</p>
+        <h5>Nội dung chuyển khoản là:  </h5>
+        <p>"mã hoá đơn của bạn." Ví dụ: DSP0000000000</p>
+    </div>
+</div>
+{% endblock content %}

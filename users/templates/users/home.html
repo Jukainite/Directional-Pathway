@@ -1,0 +1,133 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+<head>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+</head>
+
+<style>
+    .btn-primary {
+        background-color: #007bff !important; /* Màu nền xanh dương */
+        border-color: #007bff !important; /* Màu viền xanh dương */
+        color: white; /* Màu chữ trắng */
+        font-size: 1.2em; /* Kích thước chữ */
+        padding: 10px 20px; /* Kích thước nút */
+        border-radius: 5px; /* Bo tròn góc */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3 !important; /* Màu nền khi di chuột */
+        border-color: #0056b3 !important; /* Màu viền khi di chuột */
+    }
+    .dark-background {
+            background-color: rgba(17, 17, 17, 0.5) !important;
+            color: #ffffff; /* Chữ màu trắng */
+            padding: 0px; /* Để dễ nhìn */
+        border-radius: 2rem
+    }
+</style>
+        
+  
+    {% if user.is_authenticated %}
+<br>
+        <h1 class="display-4" style="text-align: center;">Chào mừng {{user.username.title}} đến với DSP</h1>
+<br>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Thần số học</h1>
+                    <p>Số dùng thần số học VIP còn lại của bạn là: <span style="color: rgb(247, 213, 26);">{{thansohoc}}</span></p>
+                    <p>Thần số học là nghệ thuật dựa trên việc phân tích các số liên quan đến ngày, tháng và năm sinh của bạn để hiểu về vận mệnh và tính cách.</p>
+                    <a href="{% url 'thansohoc' %}" class="btn btn-primary">Bắt đầu</a>
+                </div>
+            </div>
+
+        <br>
+        <br>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Sinh trắc học</h1>
+                    <p>Số dùng sinh trắc hoc VIP còn lại của bạn là: <span style="color: rgb(247, 213, 26);">{{sinhtrachoc}}</span></p>
+                    <p>Sinh trắc học vân tay là nghiên cứu về các đặc điểm vân tay để xác định tính cách và tương lai của một người.</p>
+                    <a href="{% url 'sinhtrachoc' %}" class="btn btn-primary">Bắt đầu</a>
+                </div>
+            </div>
+
+        <br>
+        <br>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Nhân tướng học</h1>
+                    <p>Số dùng nhân tướng học VIP còn lại của bạn là: <span style="color: rgb(247, 213, 26);">{{nhantuonghoc}}</span></p>
+                    <p>Nhân tướng học là nghiên cứu về các đặc điểm gương mặt để xác định tính cách và tương lai của một người.</p>
+                    <a href="{% url 'nhantuonghocimage' %}" class="btn btn-primary">Sử dụng file hình ảnh</a>
+                    <a href="{% url 'introvideo' %}" class="btn btn-primary">Sử dụng camera</a>
+                </div>
+            </div>
+    {% else %}
+    <h1 class="display-4" style="text-align: center;">Chào mừng đến với DSP</h1>
+{% endif %}
+<br>
+<br>
+
+    {% block footer %}
+    <div class="container">
+        <div class="row" sytle="
+            flex: 1;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;">
+            <div class="col-md-6 text-md-center">
+                <img src="
+                     https://img.upanh.tv/2024/07/10/Thiet-ke-chua-co-ten.png"
+                     style="width: 20vw">
+            </div>
+            <div class="col-md-6 text-md-center">
+                <br>
+                 <br>
+                <br>
+                <h1 style="font-size: 3.7em;">Directional Pathway</h1>
+                <br>
+                    <h2 style="font-size: 2em;">HEAVEN'S SECRETS, UNVEILED!</h2>
+            </div>
+        </div>
+    </div>
+<br>
+<br>
+
+
+    <footer class="jumbotron">
+        <style>
+        .large-text {
+            font-size: 1.5rem; /* Kích thước lớn hơn cho tiêu đề */
+        }
+
+        .medium-text {
+            font-size: 1.2rem; /* Kích thước trung bình cho các mục khác */
+        }
+    </style>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+              <h5 class="large-text">Thông tin liên hệ:</h5>
+              <ul class="list-unstyled">
+                    <br>
+                    <li class="medium-text"><i class="fas fa-envelope"></i> : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=directionalpathway@gmail.com" target="_blank">Email</a></li>
+                    <li class="medium-text"><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/DirectionalPathway" target="_blank"> : Facebook</a></li>
+                    <li class="medium-text"><i class="fab fa-youtube"></i> <a href="https://www.youtube.com/channel/UCnAWqNaq_CwnsfRNCLoiCNA" target="_blank"> : YouTube</a></li>
+                    <li class="medium-text"><i class="fab fa-tiktok"></i> <a href="https://www.tiktok.com/@directional_pathway?_t=8ntcGah5Mht&_r=1" target="_blank"> : TikTok</a></li>
+                </ul>
+            </div>
+          <div class="col-md-6 text-md-right">
+            <h5 class="large-text">Thông tin đánh giá :</h5>
+              <br>
+            <p class="medium-text">Được đánh giá : {{ average_rating }} <i class="fas fa-star"></i></p>
+            <p class="medium-text">Bởi : {{ total_ratings }} người dùng</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    {% endblock footer %}
+{% endblock content %}

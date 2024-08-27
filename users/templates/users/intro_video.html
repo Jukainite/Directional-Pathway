@@ -1,0 +1,43 @@
+{% extends "users/base.html" %}
+
+
+{% block content %}
+<style>
+    .btn-primary {
+        background-color: #007bff; /* Màu nền xanh dương */
+        border-color: #007bff; /* Màu viền xanh dương */
+        color: white; /* Màu chữ trắng */
+        font-size: 1.2em; /* Kích thước chữ */
+        padding: 10px 20px; /* Kích thước nút */
+        border-radius: 5px; /* Bo tròn góc */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Màu nền khi di chuột */
+        border-color: #0056b3; /* Màu viền khi di chuột */
+    }
+</style>
+<br>
+<h1>Nhân tướng học cho {{ username }}</h1>
+<br>
+<h1>Số lượt vip còn lại: {{ data }}</h1>
+<br>
+<br>
+<h3>Lưu ý khi sử dụng: </h3>
+<p>Camera sẽ tự động phát hiện khuôn mặt của người dùng. Nên </p>
+<li><strong>Cho phép truy cập webcam:</strong> Ứng dụng cần được quyền truy cập vào webcam của bạn để hoạt động chính xác. Vui lòng chấp nhận yêu cầu truy cập khi ứng dụng hỏi.</li>
+<li><strong>Môi trường chiếu sáng:</strong> Đảm bảo rằng khuôn mặt của bạn được chiếu sáng đầy đủ. Tránh ánh sáng ngược hoặc bóng tối vì chúng có thể làm giảm độ chính xác của việc nhận diện.</li>
+<li><strong>Góc chụp khuôn mặt:</strong> Hãy ngồi hoặc đứng thẳng trước webcam với khuôn mặt hướng trực tiếp vào camera. Tránh nghiêng hoặc xoay đầu quá nhiều.</li>
+<li><strong>Không che khuất khuôn mặt:</strong> Đảm bảo không có vật cản nào che khuất khuôn mặt của bạn, như tóc, mũ, kính râm, hoặc khẩu trang.</li>
+<br>
+<br>
+<div class='text-center'>
+<a href="{% url 'nhantuonghocvideo' %}" class="btn btn-primary">Bắt đầu</a>
+</div>
+
+<div class="container">
+    {% comment %} <h3>Sử dụng camera:</h3> {% endcomment %}
+    <h5>Thay đổi cách dự đoán</h5>
+    <a href="{% url 'nhantuonghocimage' %}" class="btn btn-primary">Sử dụng file hình ảnh</a>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "users/base.html" %}
+{% block title %} Nâng cấp tài khoản {% endblock title %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+    th[colspan="3"] {
+        text-align: center;
+    }
+    .approved {
+        color: green;
+    }
+    .not-approved {
+        color: red;
+    }
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .button-container input[type="submit"], 
+    .button-container input[type="button"] {
+        margin: 0 10px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #007bff;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .button-container input[type="submit"]:hover, 
+    .button-container input[type="button"]:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    .button-container input[type="submit"]:active, 
+    .button-container input[type="button"]:active {
+        background-color: #003f7f;
+        transform: translateY(0);
+    }
+</style>
+<h1>Danh sách các voucher cần rút tiền</h1>
+<br>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>Mã voucher</th>
+                <th>Tên đăng nhập</th>
+            
+                <th>Tổng cộng</th>
+                <th>Tình trạng</th>
+                <th>Thông tin chi tiết</th>
+                <th>Duyệt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for voucher in vouchers %}
+            <tr>
+                <td>{{ voucher.voucher_id }}</td>
+                <td>{{ voucher.username }}</td>
+                
+                <td>{{ voucher.total }} VNĐ</td>
+                <td>
+                    <span class="not-approved"> {{ voucher.status }} </span>
+                    
+                </td>
+                <td><a href="{% url 'voucher' voucher.voucher_id %}">Thông tin</a></td>
+                <td><input type="checkbox" name="approve" value="{{ voucher.voucher_id }}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <div class="button-container">
+        <input type="submit" value="Lưu">
+        <input type="button" value="Tải lại" onclick="window.location.reload();">
+    </div>
+</form>
+{% endblock content %}

@@ -1,0 +1,290 @@
+{% extends "users/base.html" %}
+
+{% block title %} Thần Số Học {% endblock %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<style>
+    .content-container {
+        text-align: center; /* Căn giữa nội dung */
+        margin-bottom: 20px; /* Khoảng cách dưới container của nội dung */
+        font-weight: bold;
+    }
+    .result {
+        color: blue;
+        font-weight: bold;
+    }
+    .content {
+        font-weight: bold;
+    }
+</style>
+<div class="content-container">
+<h1>Kết quả Thần số học cho {{username}}</h1>
+<br>
+<h2>Gói đã sử dụng :<span class="result"> {{status}}</h2>
+</div>
+<div class="jumbotron">
+<h2>Số chủ đạo:<span class="result"> {{ so_chu_dao_result }}</h2>
+<p class="lead content">
+    {{ so_chu_dao_cotent|safe }}
+</p>
+</div>
+
+<br>
+<br>
+
+<div class="jumbotron">
+<h2>Số linh hồn:<span class="result"> {{ so_linh_hon_result }}</h2>
+<p class="lead content">
+    {{ so_linh_hon_content|safe }}
+</p>
+</div>
+
+<br>
+<br>
+
+<div class="jumbotron">
+<h2>Số sứ mệnh: <span class="result">{{ so_su_menh_result }}</h2>
+<p class="lead content">
+    {{ so_su_menh_cotent|safe }}.
+</p>
+</div>
+
+<br>
+<br>
+
+{% if vip %}
+    {% if api %}
+    <h1>Lí Giải Chi Tiết Dành Cho Bạn</h1>
+
+    <div class="content-section">
+        <h2>Số nhân cách</h2>
+        <p><strong>Giá trị:</strong> <span class="result">{{ cacConso.nhanCach.giaTri }}</p>
+        <p>{{ cacConso.nhanCach.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số thái độ</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.thaiDo.giaTri }}</p>
+        <p>{{ cacConso.thaiDo.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số tên riêng</h2>
+        <p><strong>Giá trị:</strong> <span class="result">{{ cacConso.tenRieng.giaTri }}</p>
+        <p>{{ cacConso.tenRieng.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số ngày sinh</h2>
+        <p><strong>Giá trị:</strong> <span class="result">{{ cacConso.ngaySinh.giaTri }}</p>
+        <p>{{ cacConso.ngaySinh.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số trưởng thành</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.truongThanh.giaTri }}</p>
+        <p>{{ cacConso.truongThanh.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số nội cảm</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.noiCam.giaTri }}</p>
+        <p>{{ cacConso.noiCam.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số thế hệ</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.theHe.giaTri }}</p>
+        <p>{{ cacConso.theHe.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số lặp</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.lap.giaTri }}</p>
+        <p>{{ cacConso.lap.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số bổ sung</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.boSung.giaTri }}</p>
+        <p>{{ cacConso.boSung.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số cân bằng</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.canBang.giaTri }}</p>
+        <p>{{ cacConso.canBang.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Nghiệp</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.nghiep.giaTri }}</p>
+        <p>{{ cacConso.nghiep.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Thiếu</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.thieu.giaTri }}</p>
+        <p>{{ cacConso.thieu.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Tư duy logic</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.tuDuyLogic.giaTri }}</p>
+        <p>{{ cacConso.tuDuyLogic.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Tư duy cảm xúc</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.tuDuyCamXuc.giaTri }}</p>
+        <p>{{ cacConso.tuDuyCamXuc.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Tư duy trải nghiệm</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.tuDuyTraiNghiem.giaTri }}</p>
+        <p>{{ cacConso.tuDuyTraiNghiem.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Tư duy trực giác</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.tuDuyTrucGiac.giaTri }}</p>
+        <p>{{ cacConso.tuDuyTrucGiac.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Tư duy logic</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.tuDuyLogic.giaTri }}</p>
+        <p>{{ cacConso.tuDuyLogic.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Tính cách bẩm sinh</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.tinhCachBamSinh.giaTri }}</p>
+        <p>{{ cacConso.tinhCachBamSinh.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Số Phản hồi tiềm thức</h2>
+        <p><strong>Giá trị:</strong><span class="result"> {{ cacConso.phanHoiTiemThuc.giaTri }}</p>
+        <p>{{ cacConso.phanHoiTiemThuc.noiDung|safe }}</p>
+    </div>
+
+    <div class="content-section">
+        <h2>Chu Kì Hằng Năm</h2>
+        {% for item in chuKiHangNam %}
+            <h3>Năm </strong><span class="result">{{ item.giaTri }}</h3>
+            <p>{{ item.noiDung|safe }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="content-section">
+        <h2>Chu Kì Hằng Tháng</h2>
+        {% for item in chuKiHangThang %}
+            <h3>Tháng </strong><span class="result">{{ item.giaTri }}</h3>
+            <p>{{ item.noiDung|safe }}</p>
+        {% endfor %}
+    </div>
+
+
+    <div class="content-section">
+        <h2>Các chặng đường đời</h2>
+        {% for item in cacChangDuongDoi %}
+            <h3>Độ tuổi </strong><span class="result">{{ item.doTuoi }}</h3>
+            <h3>Giá trị </strong><span class="result">{{ item.giaTri }}</h3>
+            <p>{{ item.noiDung|safe }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="content-section">
+        <h2>Các giai đoạn thách thức</h2>
+        {% for item in thachThuc %}
+            <div class="giai-doan">
+                <h3>Giai đoạn thứ {{ item.index }} của cuộc đời</h3>
+            </div>
+            <h3>Giá trị </strong><span class="result">{{ item.giaTri }}</h3>
+            <p>{{ item.noiDung|safe }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% else %}
+    <h1>Mời Bạn Đăng Kí VIP Để Xem Lí Giải Chi Tiết!</h1>
+{% endif %}
+
+<br>
+<br>
+<div class="container">
+    <h3>Bạn có thể tiếp tục:</h3>
+
+    <a href="{% url 'thansohoc' %}" class="btn btn-primary">Thần số học</a>
+    {% comment %} <form method="post" action="{% url 'topdf' %}">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{username}}">
+        <input type="hidden" name="so_chu_dao_result" value="{{ so_chu_dao_result}}">
+        <input type="hidden" name="so_linh_hon_result" value="{{ so_linh_hon_result}}">
+        <input type="hidden" name="so_su_menh_result" value="{{ so_su_menh_result}}">
+        <input type="hidden" name="so_chu_dao_cotent" value="{{ so_chu_dao_cotent}}">
+        <input type="hidden" name="so_linh_hon_content" value="{{ so_linh_hon_content}}">
+        <input type="hidden" name="so_su_menh_cotent" value="{{ so_su_menh_cotent}}">
+        <input type="hidden" name="status" value="{{ status}}">
+        <input type="hidden" name="vip" value="{{ vip}}">
+        <input type="hidden" name="api" value="{{ api}}">
+        <input type="hidden" name="cacConso" value="{{ cacConso| escape}}">
+        <input type="hidden" name="chuKiHangNam" value="{{ chuKiHangNam| escape}}">
+        <input type="hidden" name="chuKiHangThang" value="{{ chuKiHangThang| escape}}">
+        <input type="hidden" name="cacChangDuongDoi" value="{{ cacChangDuongDoi| escape}}">
+        <input type="hidden" name="thachThuc" value="{{thachThuc| escape}}">
+       </form>
+        {% comment %} <button type="submit" class="btn btn-secondary">Xuất PDF</button> {% endcomment %}
+        {% comment %} <button type="button" id="exportPdfButton" class="btn btn-secondary">Xuất PDF</button> {% endcomment %}
+        <button onclick="printPage()" class="btn btn-secondary">Xuất ra PDF</button>
+
+<script>
+function printPage() {
+    setTimeout(function() {
+        window.print();
+    }, 1000);  // Trì hoãn in 1 giây
+}
+
+
+</script>
+
+<!-- CSS cho phiên bản in -->
+<style>
+@media print {
+    body {
+        width: 100%;
+        margin: 0%;
+        padding: 5%;
+    }
+    .btn {
+        display: 100%;  // Ẩn nút khi in
+    }
+    * {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    h1, h2, h3, p, div, section {
+        page-break-inside: avoid; /* Tránh chia trang trong các phần tử này */
+    }
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow: visible; /* Đảm bảo không giới hạn nội dung */
+        page-break-after: auto;
+    }
+    .non-printable {
+        display: none;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+}
+</style>
+
+
+
+</div>
+
+{% endblock %}

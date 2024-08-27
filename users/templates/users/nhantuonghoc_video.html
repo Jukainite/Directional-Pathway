@@ -1,0 +1,25 @@
+{% comment %} {% extends "users/base.html" %} {% endcomment %}
+
+{% block title %} Nhân Tướng Học {% endblock %}
+
+{%load static %}
+{%block scripts %}
+<script src="{% static 'camera.js' %}" defer></script>
+{%endblock scripts %}
+
+{% block content %}
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+<br>
+<h1>Nhân tướng học cho {{ user.username.title }}</h1>
+<div class='text-center'>
+<video autoplay="true" id="video-element"></video>
+</div>
+<div id="img-element"></div>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}

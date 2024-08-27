@@ -1,0 +1,9 @@
+<div class="rating">
+    {% for group in widget.optgroups %}
+      {% for option in group.1 %}
+        <input type="radio" id="{{ option.id_for_label }}" name="{{ widget.name }}" value="{{ option.value }}"{% if option.selected %} checked{% endif %} />
+        <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
+      {% endfor %}
+    {% endfor %}
+  </div>
+  

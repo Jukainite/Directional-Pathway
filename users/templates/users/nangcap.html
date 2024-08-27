@@ -1,0 +1,311 @@
+{% extends "users/base.html" %}
+{% block title %} Nâng cấp tài khoản {% endblock title %}
+{% block content %}
+<style>
+    .content-container {
+        text-align: center; /* Căn giữa nội dung */
+        margin-bottom: 20px; /* Khoảng cách dưới container của nội dung */
+        font-weight: bold;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        font-size: 20px;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f0f0f0;
+    }
+
+    .btn-custom {
+        font-size: 25px; 
+        font-weight: bold;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #007bff;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        text-decoration: none; /* Đảm bảo rằng nút không có gạch chân */
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+    .btn-custom:active {
+        background-color: #003f7f;
+        transform: translateY(0);
+    }
+    .button-container {
+        text-align: center; /* Căn giữa nội dung trong div */
+        margin-top: 20px; /* Khoảng cách phía trên nút */
+    }
+</style>
+<div class="content-container">
+    <h1>{{error}}</h1>
+
+</div>
+  <div class="container">
+      <h1>Nâng cấp tài khoản</h1>
+      <br>
+      <h5>Sau khi chọn dịch vụ bạn hãy nhấp vào nút xem hoá đơn để tiến hành thanh toán</h5>
+      <br>
+      <form method="GET">
+          {% csrf_token %}
+          <table class="table">
+            <thead>
+                <tr>
+                    <th rowspan="2">Dịch vụ</th>
+                    <th colspan="4" style="text-align: center;">Số lượt sử dụng VIP</th>
+                </tr>
+                <tr>
+                    <th style="text-align: center;">0 lần</th>
+                    <th style="text-align: center;">1 lần</th>
+                    <th style="text-align: center;">5 lần</th>
+                    <th style="text-align: center;">10 lần</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Thần số học</td>
+                    <td style="text-align: center;">{{ form.thansohoc.0 }}</td>
+                    <td style="text-align: center;">{{ form.thansohoc.1 }}</td>
+                    <td style="text-align: center;">{{ form.thansohoc.2 }}</td>
+                    <td style="text-align: center;">{{ form.thansohoc.3 }}</td>
+                </tr>
+                <tr>
+                    <td>Nhân tướng học</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.0 }}</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.1 }}</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.2 }}</td>
+                    <td style="text-align: center;">{{ form.nhantuonghoc.3 }}</td>
+                </tr>
+               
+                <tr>
+                    <td>Sinh trắc học</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.0 }}</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.1 }}</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.2 }}</td>
+                    <td style="text-align: center;">{{ form.sinhtrachoc.3 }}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <br> 
+        <div class="content-container">
+        </div>
+        <h2>Các Voucher Bạn Sở Hữu</h2>
+        <div class="voucher-list" style="max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+            {% if vouchers %}
+                {% for voucher in vouchers %}
+                    <div>
+                        <input type="checkbox" name="vouchers" value="{{ voucher.voucher_id }}" id="voucher_{{ voucher.voucher_id }}">
+                        <label for="voucher_{{ voucher.voucher_id }}">{{ voucher.voucher_id }} - Giảm {{ voucher.total }} VNĐ</label>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Không có voucher nào.</p>
+            {% endif %}
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary btn-custom">Xem hoá đơn</button>
+        </div>
+        <br>
+        <div class="content-container">
+        <h5>Ngoài những dịch vụ trên, DirectionalPathway còn cung cấp cho bạn các gói custom theo yêu cầu. </h5>
+        <h5>Nếu có thắc mắc hay cần hỗ trợ. Hãy liên hệ với chúng tôi tại:</h5>
+            <ul class="list-unstyled">
+            <li class="medium-text"><i class="fas fa-envelope"></i> : <a href="https://mail.google.com/mail/?view=cm&fs=1&to=directionalpathway@gmail.com" target="_blank">Email</a></li>
+            <li class="medium-text"><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/DirectionalPathway" target="_blank"> : Facebook</a></li>
+            </ul>
+                <br>
+        <h5>Bạn có thể xem chính sách tính phí của chúng tôi phía bên dưới</h5>
+        </div>
+    </form>
+  </div>
+  <br>
+  <br>
+  <table>
+    <tr>
+        <th>Dịch vụ</th>
+        <th>Thần số học</th>
+        <th>Nhân tướng học</th>
+        <th>Sinh trắc học</th>
+    </tr>
+    <tr>
+        <td>Giá</td>
+        <td>VND 50,000</td>
+        <td>VND 80,000</td>
+        <td>VND 100,000</td>
+    </tr>
+    <tr>
+        <td>Khuyến mãi lần đầu sử dụng</td>
+        <td>20%</td>
+        <td>20%</td>
+        <td>20%</td>
+    </tr>
+    <tr>
+        <td>Giá sau khi giảm</td>
+        <td>VND 40,000</td>
+        <td>VND 64,000</td>
+        <td>VND 80,000</td>
+    </tr>
+    <tr>
+        <td>Khuyến mãi cho lần tiếp theo</td>
+        <td>10%</td>
+        <td>10%</td>
+        <td>10%</td>
+    </tr>
+    <tr>
+        <td>Giá sau khi giảm</td>
+        <td>VND 45,000</td>
+        <td>VND 72,000</td>
+        <td>VND 90,000</td>
+    </tr>
+
+</table>
+<br>
+  <br>
+<table>
+    <tr>
+        <th>Dịch vụ</th>
+        <th>Đơn vị</th>
+        <th>Thần số học</th>
+        
+        <th>Nhân tướng học</th>
+        <th>Sinh trắc học</th>
+    </tr>
+
+   
+    <tr>
+        <td>Khuyến mãi 
+            (sau khi sử dụng thần số học)</td>
+        <td>%</td>
+        <td>-</td>
+        <td>25%</td>
+        <td>25%</td>
+    </tr>
+    
+    <tr>
+        <td>Khuyến mãi
+            (sau khi sử dụng nhân tướng học)
+            </td>
+        <td>%</td>
+        <td>25%</td>
+        <td>-</td>
+        <td>25%</td>
+    </tr>
+   
+    <tr>
+        <td> 
+            Khuyến mãi
+            (sau khi sử dụng sinh trắc học)</td>
+            <td>%</td>
+            <td>25%</td>
+            <td>25%</td>
+            <td>-</td>
+    </tr>
+    <tr>
+        <td>  Khuyến mãi
+            (sau khi sử dụng Thần số học và Nhân tướng học)</td>
+            <td>%</td>
+            <td>-</td>
+            <td>-</td>
+            <td>30%</td>
+    </tr>
+    <tr>
+        <td> Khuyến mãi
+(Sau khi sử dụng Thần số học và sinh trắc học)</td>
+            <td>%</td>
+            <td>-</td>
+            <td>30%</td>
+            <td>-</td>
+    </tr>
+    <tr>
+        <td> Khuyến mãi
+(sau khi sử dụng Nhân tướng học và sinh trắc học)</td>
+            <td>%</td>
+            <td>30%</td>
+            <td>-</td>
+            <td>-</td>
+    </tr>
+</table>
+<br>
+  <br>
+
+  <table>
+    <tr>
+        <th>COMBO</th>
+        <th>Giá gốc</th>
+        <th>Giảm giá</th>
+        <th>Giá sau khi giảm</th>
+    </tr>
+    <tr>
+        <td>Thần Số Học + Nhân Tướng + Sinh Trắc</td>
+        <td>VND 230,000</td>
+        <td>30%</td>
+        <td>VND 161,000</td>
+    </tr>
+    <tr>
+        <td>Gói sử dụng lại cả 3 dịch vụ</td>
+        <td>VND 230,000</td>
+        <td>35%</td>
+        <td>VND 149,500</td>
+    </tr>
+    <tr>
+        <td>Thần số học + Nhân tướng (1)</td>
+        <td>VND 130,000</td>
+        <td>20%</td>
+        <td>VND 104,000</td>
+    </tr>
+    <tr>
+        <td>Gói sử dụng lại (1)</td>
+        <td>VND 130,000</td>
+        <td>25%</td>
+        <td>VND 97,500</td>
+    </tr>
+    <tr>
+        <td>Thần Số học + Sinh Trắc (2)</td>
+        <td>VND 150,000</td>
+        <td>20%</td>
+        <td>VND 120,000</td>
+    </tr>
+    <tr>
+        <td>Gói sử dụng lại (2)</td>
+        <td>VND 150,000</td>
+        <td>25%</td>
+        <td>VND 112,500</td>
+    </tr>
+    <tr>
+        <td>Nhân tướng + Sinh trắc (3)</td>
+        <td>VND 180,000</td>
+        <td>20%</td>
+        <td>VND 144,000</td>
+    </tr>
+    <tr>
+        <td>Gói sử dụng lại (3)</td>
+        <td>VND 180,000</td>
+        <td>25%</td>
+        <td>VND 135,000</td>
+    </tr>
+    <tr>
+        <td>Custom UNIT số lượng lớn. </td>
+        <td></td>
+        <td></td>
+        <td>Vui lòng liên hệ page để được giá ưu đãi</td>
+    </tr>
+    
+</table>
+<br>
+<br>
+<h3>Người dùng có 1 mã giới thiệu chính là email của người đó. Họ được chia hoa hồng 10% dựa trên giao dịch đầu tiên của người dùng mới được giới thiệu thông qua mã giới thiệu của hoá đơn đầu tiên (Áp dụng với hoá đơn từ 150,000₫, với một mã giới thiệu duy nhất)</h3>
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+<style>
+    .btn-primary {
+        background-color: #007bff; /* Màu nền xanh dương */
+        border-color: #007bff; /* Màu viền xanh dương */
+        color: white; /* Màu chữ trắng */
+        font-size: 1.2em; /* Kích thước chữ */
+        padding: 10px 20px; /* Kích thước nút */
+        border-radius: 5px; /* Bo tròn góc */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Màu nền khi di chuột */
+        border-color: #0056b3; /* Màu viền khi di chuột */
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    <label for="ngay">Ngày sinh:</label>
+    <input type="number" name="ngay" id="ngay" min="1" max="31">
+    <label for="thang">Tháng sinh:</label>
+    <input type="number" name="thang" id="thang" min="1" max="12">
+    <label for="nam">Năm sinh:</label>
+    <input type="number" name="nam" id="nam" min="1900" max="2100">
+    <label for="ten">Họ và tên:</label>
+    <input type="text" name="ten" id="ten">
+    <button type="submit" class="btn btn-primary">Bắt đầu tính toán</button>   
+</form>

@@ -1,0 +1,27 @@
+{% extends "users/base.html" %}
+{% block title %} Nâng cấp tài khoản {% endblock title %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+    <div style="float: left; width: 50%;">
+<h3>Mã hoá đơn: {{ voucher.voucher_id }}</h3>
+<br>
+<h3>Người dùng: {{ voucher.username }}</h3>
+<br>
+<h3>Tổng tiền: {{voucher.total }} VNĐ</h3>
+<br>
+<h3>bank: {{bank }} </h3>
+<br>
+<h3>stk: {{number }}</h3>
+
+<br>
+</div>
+<div style="float: right; width: 50%; text-align: center;">
+<img src="data:image/png;base64,{{img_str}}" alt="QR Code" style="max-height:300px">
+<br>
+<br>
+<br>
+<h3>nội dung chuyển: {{content }} </h3>
+</div>
+{% endblock content %}

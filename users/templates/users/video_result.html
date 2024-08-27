@@ -1,0 +1,51 @@
+{% extends "users/base.html" %}
+
+
+{% block content %}
+<style>
+    .content-container {
+        text-align: center; /* Căn giữa nội dung */
+        margin-bottom: 20px; /* Khoảng cách dưới container của nội dung */
+        font-weight: bold;
+    }
+    .result {
+        color: blue;
+        font-weight: bold;
+    }
+    .content {
+        font-weight: bold;
+    }
+</style>
+<div class="content-container">
+    <h1>Kết quả Nhân tướng học cho {{username}}</h1>
+    <br>
+    <h2>Gói đã sử dụng :<span class="result"> {{status}}</h2>
+    <br>
+    <br>
+{% if img_obj %}   
+    <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">  
+{% endif %}  
+
+<h2>Thông tin Nhân tướng học:</h2>
+</div>
+<div class="jumbotron">
+    <h2>Hình dạng khuôn mặt: <span class="result">{{ result }}</h2>
+    <p class="lead content">
+        {{ content|safe }}
+
+</div>
+<br>
+<br>
+<div class="container">
+    <h3>Tiếp sử dụng Nhân tướng học:</h3>
+    <a href="{% url 'nhantuonghocimage' %}" class="btn btn-primary">Sử dụng file hình ảnh</a>
+    <a href="{% url 'introvideo' %}" class="btn btn-primary">Sử dụng camera</a>
+    <button onclick="printPage()" class="btn btn-secondary">Xuất ra PDF</button>
+
+        <script>
+        function printPage() {
+            window.print();
+        }
+        </script>
+</div>
+{% endblock %}

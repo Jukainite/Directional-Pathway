@@ -1,0 +1,80 @@
+{% extends "users/base.html" %}
+{% block content %}
+  <style>
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      margin-bottom: 20px; /* Thêm khoảng cách dưới các ngôi sao */
+    }
+    .rating input {
+      display: none;
+    }
+    .rating label {
+      position: relative;
+      width: 1em;
+      font-size: 3vw;
+      color: #CCCCCC; /* Màu xám nhạt */
+      cursor: pointer;
+    }
+    .rating label::before {
+      content: "★";
+      position: absolute;
+      opacity: 0.5; /* Màu xám nhạt */
+    }
+    .rating input:checked ~ label:before {
+      opacity: 1;
+      color: #FFD600; /* Màu vàng khi được chọn */
+    }
+    .rating input:hover ~ label:before,
+    .rating input:hover ~ label ~ label:before {
+      opacity: 1;
+      color: #FFD600; /* Màu vàng khi được chọn */
+    }
+    .submit-button {
+      display: flex;
+      justify-content: center;
+    }
+    .submit-button button {
+      font-size: 1em;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+  <br>
+  <h1>Mời bạn đánh giá dịch vụ của Directional Pathway</h1>
+  <form method="post">
+    <br>
+  <br>
+    {% csrf_token %}
+    <div class="rating">
+      <input type="radio" id="star5" name="stars" value="5" /><label for="star5" title="5 stars"></label>
+      <input type="radio" id="star4" name="stars" value="4" /><label for="star4" title="4 stars"></label>
+      <input type="radio" id="star3" name="stars" value="3" /><label for="star3" title="3 stars"></label>
+      <input type="radio" id="star2" name="stars" value="2" /><label for="star2" title="2 stars"></label>
+      <input type="radio" id="star1" name="stars" value="1" /><label for="star1" title="1 star"></label>
+    </div>
+    <br>
+    <br>
+    <div class="submit-button">
+      <button type="submit"class="btn btn-primary">Đánh Giá</button>
+    </div>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const stars = document.querySelectorAll('.rating input');
+        stars.forEach((star) => {
+            star.addEventListener('change', (e) => {
+                stars.forEach((s) => {
+                    if (s.checked) {
+                        s.nextElementSibling.style.color = '#FFD600'; // Màu vàng khi được chọn
+                    } else {
+                        s.nextElementSibling.style.color = '#CCCCCC'; // Màu xám khi không được chọn
+                    }
+                });
+            });
+        });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "users/base.html" %}
+{% block title %}Logout{% endblock title %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">Bạn đã đăng xuất</h5>
+        <p class="card-text">
+            Cảm ơn bạn đã dành thời gian, hãy liên hệ với chúng tôi qua địa chỉ email nếu có bất kỳ ý kiến hoặc gợi ý nào.
+        </p>
+        <br><hr><a href="{% url 'login' %}" class="btn btn-primary"Đăng nhập lại</a>
+        </div>
+    </div>
+
+
+{% endblock content %}
