@@ -2,6 +2,7 @@ from unidecode import unidecode
 import nltk
 from nltk.tokenize import word_tokenize
 nltk.download('punkt')
+nltk.download('punkt_tab')
 def so_chu_dao(ngay_thang_nam_sinh):
     """Hàm tính số chủ đạo từ ngày tháng năm sinh."""
     # Tách ngày, tháng và năm từ chuỗi ngày tháng năm sinh
